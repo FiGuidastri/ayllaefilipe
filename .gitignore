@@ -1,0 +1,19 @@
+# Arquivos temporários de processamento
+assets/zip_extracted/
+assets/convite_page1.png
+assets/convite_page2.png
+assets/bg_church.jpg
+assets/bg_church.png
+assets/20260526_203136_0000.png
+assets/20260526_203136_0001.png
+
+# Originais (não precisam ir pro site)
+assets/Convite Aylla e Filipe.pdf
+assets/WhatsApp Unknown 2026-05-26 at 20.48.37.zip
+
+# Configs de desenvolvimento local
+.claude/
+
+# Sistema
+.DS_Store
+Thumbs.db

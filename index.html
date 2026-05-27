@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Aylla &amp; Filipe · 11.10.2026</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500;1,600&family=Raleway:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --crimson:       #9B1B4B;
+      --crimson-hover: #7d1339;
+      --silver:        #B8B8C0;
+      --silver-light:  #DCDCE4;
+      --bg:            #FAFAF8;
+      --bg-warm:       #F5F3EF;
+      --text:          #2D2D2D;
+      --text-light:    #888;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Raleway', sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      overflow-x: hidden;
+    }
+
+    /* ─── HERO ─────────────────────────────────────────────── */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 48px 24px 60px;
+      position: relative;
+      background-color: var(--bg);
+      overflow: hidden;
+    }
+
+    /* Igreja como fundo da hero */
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background-image: url('assets/bg_church_clean.jpg');
+      background-size: cover;
+      background-position: center top;
+      opacity: 0.28;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* Gradient suave na base para não cortar brusco */
+    .hero-bg::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 35%;
+      background: linear-gradient(to bottom, transparent, var(--bg));
+    }
+
+    /* Todo conteúdo do hero fica acima do bg */
+    .hero > *:not(.hero-bg) {
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-logo {
+      width: min(380px, 82vw);
+      margin-bottom: 28px;
+      opacity: 0;
+      mix-blend-mode: multiply;
+      animation: fadeUp 1.4s cubic-bezier(.22,.68,0,1.2) forwards 0.3s;
+    }
+
+    .hero-subtitle {
+      font-weight: 300;
+      font-size: 0.85rem;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      color: var(--text-light);
+      margin-bottom: 18px;
+      opacity: 0;
+      animation: fadeUp 1.2s ease forwards 0.8s;
+    }
+
+    .hero-divider {
+      width: 1px;
+      height: 40px;
+      background: var(--crimson);
+      margin: 0 auto 18px;
+      opacity: 0;
+      animation: fadeUp 1.2s ease forwards 1.0s;
+    }
+
+    .hero-date {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: clamp(2rem, 6vw, 3.8rem);
+      font-weight: 400;
+      color: var(--crimson);
+      margin-bottom: 14px;
+      opacity: 0;
+      animation: fadeUp 1.2s ease forwards 1.2s;
+    }
+
+    .hero-info {
+      font-weight: 300;
+      font-size: 0.8rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--text-light);
+      opacity: 0;
+      animation: fadeUp 1.2s ease forwards 1.4s;
+    }
+
+    .scroll-cue {
+      position: absolute;
+      bottom: 32px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+      opacity: 0;
+      animation: fadeUp 1.5s ease forwards 2.2s;
+    }
+
+    .scroll-cue span {
+      font-size: 0.65rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--silver);
+    }
+
+    .scroll-line {
+      width: 1px;
+      height: 42px;
+      background: linear-gradient(to bottom, var(--silver), transparent);
+      animation: pulse 2s ease-in-out infinite;
+    }
+
+    /* ─── COUNTDOWN ─────────────────────────────────────────── */
+    .countdown-section {
+      background-color: var(--crimson);
+      padding: 88px 24px;
+      text-align: center;
+      color: white;
+    }
+
+    .countdown-eyebrow {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 1.35rem;
+      font-weight: 300;
+      opacity: 0.75;
+      margin-bottom: 52px;
+      letter-spacing: 0.05em;
+    }
+
+    .countdown-grid {
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      gap: clamp(16px, 5vw, 56px);
+      flex-wrap: wrap;
+    }
+
+    .countdown-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-width: 70px;
+    }
+
+    .countdown-number {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(3.5rem, 12vw, 7rem);
+      font-weight: 300;
+      line-height: 1;
+      letter-spacing: -0.02em;
+    }
+
+    .countdown-unit {
+      font-size: 0.65rem;
+      font-weight: 500;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      opacity: 0.6;
+      margin-top: 10px;
+    }
+
+    .countdown-sep {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 4rem;
+      font-weight: 300;
+      opacity: 0.3;
+      padding-top: 12px;
+      line-height: 1;
+    }
+
+    /* ─── LOCAIS ─────────────────────────────────────────────── */
+    .locations-section {
+      padding: 110px 24px;
+      background-color: var(--bg-warm);
+    }
+
+    .section-header {
+      text-align: center;
+      margin-bottom: 70px;
+    }
+
+    .section-header h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.9rem, 4vw, 3rem);
+      font-weight: 400;
+      color: var(--text);
+      margin-bottom: 20px;
+    }
+
+    .ornament {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 18px;
+    }
+
+    .ornament::before,
+    .ornament::after {
+      content: '';
+      height: 1px;
+      width: 72px;
+      background: var(--silver-light);
+    }
+
+    .ornament span {
+      color: var(--crimson);
+      font-size: 1rem;
+      letter-spacing: 0.4em;
+    }
+
+    .locations-grid {
+      display: flex;
+      justify-content: center;
+      align-items: stretch;
+      max-width: 860px;
+      margin: 0 auto;
+    }
+
+    .location-card {
+      flex: 1;
+      padding: 40px clamp(24px, 5vw, 64px);
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .location-divider {
+      width: 1px;
+      background: var(--crimson);
+      opacity: 0.25;
+      flex-shrink: 0;
+    }
+
+    .loc-icon {
+      font-size: 1.8rem;
+      margin-bottom: 22px;
+    }
+
+    .loc-type {
+      font-size: 0.68rem;
+      font-weight: 600;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      color: var(--crimson);
+      margin-bottom: 16px;
+    }
+
+    .loc-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.2rem, 3vw, 1.7rem);
+      font-weight: 500;
+      color: var(--text);
+      line-height: 1.35;
+      margin-bottom: 12px;
+    }
+
+    .loc-time {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 1.05rem;
+      color: var(--crimson);
+      margin-bottom: 18px;
+      opacity: 0.85;
+    }
+
+    .loc-address {
+      font-weight: 300;
+      font-size: 0.82rem;
+      color: var(--text-light);
+      line-height: 1.8;
+      margin-bottom: 30px;
+      flex: 1;
+    }
+
+    .loc-link {
+      display: inline-block;
+      padding: 11px 30px;
+      border: 1px solid var(--crimson);
+      color: var(--crimson);
+      text-decoration: none;
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      transition: background 0.25s ease, color 0.25s ease;
+    }
+
+    .loc-link:hover {
+      background: var(--crimson);
+      color: white;
+    }
+
+    /* ─── BÊNÇÃO ─────────────────────────────────────────────── */
+    .blessing-section {
+      padding: 90px 24px;
+      text-align: center;
+      background-color: var(--bg);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .blessing-section::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: url('assets/bg_pattern.jpg');
+      background-size: cover;
+      background-position: center;
+      opacity: 0.12;
+      pointer-events: none;
+    }
+
+    .blessing-section > * {
+      position: relative;
+      z-index: 1;
+    }
+
+    .blessing-text {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: clamp(1.3rem, 3.5vw, 2rem);
+      font-weight: 300;
+      color: var(--text-light);
+      max-width: 480px;
+      margin: 0 auto;
+      line-height: 1.7;
+    }
+
+    .blessing-line {
+      width: 1px;
+      height: 60px;
+      background: var(--crimson);
+      margin: 0 auto 32px;
+      opacity: 0.4;
+    }
+
+    /* ─── FOOTER ─────────────────────────────────────────────── */
+    .footer {
+      background-color: var(--bg-warm);
+      padding: 56px 24px;
+      text-align: center;
+      border-top: 1px solid var(--silver-light);
+    }
+
+    .footer-logo {
+      width: min(180px, 55vw);
+      margin-bottom: 22px;
+      opacity: 0.55;
+      mix-blend-mode: multiply;
+    }
+
+    .footer-caption {
+      font-weight: 300;
+      font-size: 0.75rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--silver);
+    }
+
+    /* ─── ANIMATIONS ─────────────────────────────────────────── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(22px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 0.35; }
+      50%       { opacity: 1; }
+    }
+
+    /* ─── RESPONSIVE ─────────────────────────────────────────── */
+    @media (max-width: 580px) {
+      .locations-grid { flex-direction: column; }
+      .location-divider { width: 50px; height: 1px; align-self: center; margin: 8px 0; }
+      .countdown-sep { display: none; }
+      .countdown-grid { gap: 28px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ── HERO ───────────────────────────────────────────────── -->
+  <section class="hero">
+    <div class="hero-bg"></div>
+    <img class="hero-logo"
+         src="assets/logo_cropped.png"
+         alt="Aylla &amp; Filipe">
+    <p class="hero-subtitle">Convidam para o seu casamento</p>
+    <div class="hero-divider"></div>
+    <h1 class="hero-date">11 de outubro de 2026</h1>
+    <p class="hero-info">Domingo &nbsp;·&nbsp; 16h00 &nbsp;·&nbsp; Lins, SP</p>
+    <div class="scroll-cue">
+      <span>scroll</span>
+      <div class="scroll-line"></div>
+    </div>
+  </section>
+
+  <!-- ── COUNTDOWN ──────────────────────────────────────────── -->
+  <section class="countdown-section">
+    <p class="countdown-eyebrow">Faltam apenas…</p>
+    <div class="countdown-grid">
+      <div class="countdown-item">
+        <span class="countdown-number" id="cd-days">--</span>
+        <span class="countdown-unit">dias</span>
+      </div>
+      <span class="countdown-sep">·</span>
+      <div class="countdown-item">
+        <span class="countdown-number" id="cd-hours">--</span>
+        <span class="countdown-unit">horas</span>
+      </div>
+      <span class="countdown-sep">·</span>
+      <div class="countdown-item">
+        <span class="countdown-number" id="cd-minutes">--</span>
+        <span class="countdown-unit">minutos</span>
+      </div>
+      <span class="countdown-sep">·</span>
+      <div class="countdown-item">
+        <span class="countdown-number" id="cd-seconds">--</span>
+        <span class="countdown-unit">segundos</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── LOCAIS ─────────────────────────────────────────────── -->
+  <section class="locations-section">
+    <div class="section-header">
+      <h2>O Grande Dia</h2>
+      <div class="ornament"><span>✦ ✦ ✦</span></div>
+    </div>
+
+    <div class="locations-grid">
+
+      <!-- Cerimônia -->
+      <div class="location-card">
+        <span class="loc-icon">⛪</span>
+        <p class="loc-type">Cerimônia</p>
+        <h3 class="loc-name">Capela Nossa Senhora do Rosário</h3>
+        <p class="loc-time">Domingo, 11 de outubro · 16h00</p>
+        <p class="loc-address">
+          Rua 9 de Julho, 1000<br>
+          Centro — Lins, SP
+        </p>
+        <a class="loc-link"
+           href="https://maps.google.com/?q=Rua+9+de+Julho,+1000,+Centro,+Lins,+SP"
+           target="_blank" rel="noopener">
+          Como chegar
+        </a>
+      </div>
+
+      <div class="location-divider"></div>
+
+      <!-- Recepção -->
+      <div class="location-card">
+        <span class="loc-icon">🥂</span>
+        <p class="loc-type">Recepção</p>
+        <h3 class="loc-name">Villa Vechia</h3>
+        <p class="loc-time">Após a cerimônia</p>
+        <p class="loc-address">
+          R. Gen. Milton Fernandes de Mello, 1390<br>
+          Chácara Flora — Lins, SP
+        </p>
+        <a class="loc-link"
+           href="https://maps.google.com/?q=R.+Gen.+Milton+Fernandes+de+Mello,+1390,+Lins,+SP"
+           target="_blank" rel="noopener">
+          Como chegar
+        </a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ── BÊNÇÃO ──────────────────────────────────────────────── -->
+  <section class="blessing-section">
+    <div class="blessing-line"></div>
+    <p class="blessing-text">Com a bênção de Deus<br>e seus pais</p>
+  </section>
+
+  <!-- ── FOOTER ─────────────────────────────────────────────── -->
+  <footer class="footer">
+    <img class="footer-logo"
+         src="assets/logo_cropped.png"
+         alt="Aylla &amp; Filipe">
+    <p class="footer-caption">Aylla &amp; Filipe &nbsp;·&nbsp; 11.10.2026</p>
+  </footer>
+
+  <script>
+    (function () {
+      const target = new Date('2026-10-11T16:00:00');
+
+      function pad(n) { return String(n).padStart(2, '0'); }
+
+      function tick() {
+        const diff = target - Date.now();
+        if (diff <= 0) {
+          ['days','hours','minutes','seconds'].forEach(id => {
+            document.getElementById('cd-' + id).textContent = '00';
+          });
+          return;
+        }
+        const days    = Math.floor(diff / 86400000);
+        const hours   = Math.floor(diff % 86400000 / 3600000);
+        const minutes = Math.floor(diff % 3600000  / 60000);
+        const seconds = Math.floor(diff % 60000    / 1000);
+
+        document.getElementById('cd-days').textContent    = pad(days);
+        document.getElementById('cd-hours').textContent   = pad(hours);
+        document.getElementById('cd-minutes').textContent = pad(minutes);
+        document.getElementById('cd-seconds').textContent = pad(seconds);
+      }
+
+      tick();
+      setInterval(tick, 1000);
+    })();
+  </script>
+
+</body>
+</html>
