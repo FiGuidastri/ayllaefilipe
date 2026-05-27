@@ -48,23 +48,14 @@
     .hero-bg {
       position: absolute;
       inset: 0;
-      background-image: url('assets/bg_church_clean.jpg');
-      background-size: cover;
-      background-position: center top;
-      opacity: 0.28;
+      background-image: url('assets/bg_church_illustration.jpg');
+      background-size: min(560px, 90%);
+      background-position: center center;
+      background-repeat: no-repeat;
+      mix-blend-mode: multiply;
+      opacity: 0.22;
       pointer-events: none;
       z-index: 0;
-    }
-
-    /* Gradient suave na base para não cortar brusco */
-    .hero-bg::after {
-      content: '';
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      height: 35%;
-      background: linear-gradient(to bottom, transparent, var(--bg));
     }
 
     /* Todo conteúdo do hero fica acima do bg */
