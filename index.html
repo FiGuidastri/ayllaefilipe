@@ -17,8 +17,8 @@
       --silver-light:  #DCDCE4;
       --bg:            #FAFAF8;
       --bg-warm:       #F5F3EF;
-      --text:          #2D2D2D;
-      --text-light:    #888;
+      --text:          #1a3853;
+      --text-light:    #1a3853;
     }
 
     html { scroll-behavior: smooth; }
@@ -49,11 +49,11 @@
       position: absolute;
       inset: 0;
       background-image: url('assets/bg_church_illustration.jpg');
-      background-size: min(560px, 90%);
-      background-position: center center;
+      background-size: cover;
+      background-position: center top;
       background-repeat: no-repeat;
       mix-blend-mode: multiply;
-      opacity: 0.22;
+      opacity: 0.18;
       pointer-events: none;
       z-index: 0;
     }
@@ -74,7 +74,7 @@
 
     .hero-subtitle {
       font-weight: 300;
-      font-size: 0.85rem;
+      font-size: 1rem;
       letter-spacing: 0.35em;
       text-transform: uppercase;
       color: var(--text-light);
@@ -95,7 +95,7 @@
     .hero-date {
       font-family: 'Cormorant Garamond', serif;
       font-style: italic;
-      font-size: clamp(2rem, 6vw, 3.8rem);
+      font-size: clamp(2.4rem, 7vw, 4.4rem);
       font-weight: 400;
       color: var(--crimson);
       margin-bottom: 14px;
@@ -105,7 +105,7 @@
 
     .hero-info {
       font-weight: 300;
-      font-size: 0.8rem;
+      font-size: 0.95rem;
       letter-spacing: 0.2em;
       text-transform: uppercase;
       color: var(--text-light);
@@ -113,32 +113,6 @@
       animation: fadeUp 1.2s ease forwards 1.4s;
     }
 
-    .scroll-cue {
-      position: absolute;
-      bottom: 32px;
-      left: 50%;
-      transform: translateX(-50%);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 10px;
-      opacity: 0;
-      animation: fadeUp 1.5s ease forwards 2.2s;
-    }
-
-    .scroll-cue span {
-      font-size: 0.65rem;
-      letter-spacing: 0.25em;
-      text-transform: uppercase;
-      color: var(--silver);
-    }
-
-    .scroll-line {
-      width: 1px;
-      height: 42px;
-      background: linear-gradient(to bottom, var(--silver), transparent);
-      animation: pulse 2s ease-in-out infinite;
-    }
 
     /* ─── COUNTDOWN ─────────────────────────────────────────── */
     .countdown-section {
@@ -151,7 +125,7 @@
     .countdown-eyebrow {
       font-family: 'Cormorant Garamond', serif;
       font-style: italic;
-      font-size: 1.35rem;
+      font-size: 1.6rem;
       font-weight: 300;
       opacity: 0.75;
       margin-bottom: 52px;
@@ -175,14 +149,14 @@
 
     .countdown-number {
       font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(3.5rem, 12vw, 7rem);
+      font-size: clamp(4rem, 13vw, 8rem);
       font-weight: 300;
       line-height: 1;
       letter-spacing: -0.02em;
     }
 
     .countdown-unit {
-      font-size: 0.65rem;
+      font-size: 0.78rem;
       font-weight: 500;
       letter-spacing: 0.3em;
       text-transform: uppercase;
@@ -212,7 +186,7 @@
 
     .section-header h2 {
       font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(1.9rem, 4vw, 3rem);
+      font-size: clamp(2.2rem, 4.5vw, 3.5rem);
       font-weight: 400;
       color: var(--text);
       margin-bottom: 20px;
@@ -269,7 +243,7 @@
     }
 
     .loc-type {
-      font-size: 0.68rem;
+      font-size: 0.78rem;
       font-weight: 600;
       letter-spacing: 0.35em;
       text-transform: uppercase;
@@ -279,7 +253,7 @@
 
     .loc-name {
       font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(1.2rem, 3vw, 1.7rem);
+      font-size: clamp(1.4rem, 3.5vw, 2rem);
       font-weight: 500;
       color: var(--text);
       line-height: 1.35;
@@ -289,7 +263,7 @@
     .loc-time {
       font-family: 'Cormorant Garamond', serif;
       font-style: italic;
-      font-size: 1.05rem;
+      font-size: 1.25rem;
       color: var(--crimson);
       margin-bottom: 18px;
       opacity: 0.85;
@@ -297,7 +271,7 @@
 
     .loc-address {
       font-weight: 300;
-      font-size: 0.82rem;
+      font-size: 0.95rem;
       color: var(--text-light);
       line-height: 1.8;
       margin-bottom: 30px;
@@ -310,7 +284,7 @@
       border: 1px solid var(--crimson);
       color: var(--crimson);
       text-decoration: none;
-      font-size: 0.7rem;
+      font-size: 0.82rem;
       font-weight: 600;
       letter-spacing: 0.18em;
       text-transform: uppercase;
@@ -350,7 +324,7 @@
     .blessing-text {
       font-family: 'Cormorant Garamond', serif;
       font-style: italic;
-      font-size: clamp(1.3rem, 3.5vw, 2rem);
+      font-size: clamp(1.6rem, 4vw, 2.4rem);
       font-weight: 300;
       color: var(--text-light);
       max-width: 480px;
@@ -383,10 +357,10 @@
 
     .footer-caption {
       font-weight: 300;
-      font-size: 0.75rem;
+      font-size: 0.88rem;
       letter-spacing: 0.22em;
       text-transform: uppercase;
-      color: var(--silver);
+      color: #1a3853;
     }
 
     /* ─── ANIMATIONS ─────────────────────────────────────────── */
@@ -421,10 +395,6 @@
     <div class="hero-divider"></div>
     <h1 class="hero-date">11 de outubro de 2026</h1>
     <p class="hero-info">Domingo &nbsp;·&nbsp; 16h00 &nbsp;·&nbsp; Lins, SP</p>
-    <div class="scroll-cue">
-      <span>scroll</span>
-      <div class="scroll-line"></div>
-    </div>
   </section>
 
   <!-- ── COUNTDOWN ──────────────────────────────────────────── -->
